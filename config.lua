@@ -12,9 +12,9 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "kanagawa"
-lvim.transparent_window = false 
+lvim.transparent_window = false
 -- lvim.colorscheme.require('kanagawa').setup({
-  -- tramsparent = true,
+-- tramsparent = true,
 -- })
 -- O.plugin.telescope_project.active = true
 
@@ -69,6 +69,7 @@ lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.lualine.sections.lualine_c = { "location" }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -84,6 +85,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "rust",
   "java",
   "yaml",
+  -- "sql",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -148,35 +150,35 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-    {"folke/tokyonight.nvim"},
-    {"rafamadriz/neon"},
-    {"marko-cerovac/material.nvim"},
-    {"bluz71/vim-nightfly-guicolors"},
-    {"sainnhe/sonokai"},
-    {"tiagovla/tokyodark.nvim"},
-    {"rebelot/kanagawa.nvim"},
-    {"olimorris/onedarkpro.nvim"},
-    {"Mofiqul/dracula.nvim"},
-    {"yashguptaz/calvera-dark.nvim"},
-    {"nxvu699134/vn-night.nvim"},
-    {
-      "simrat39/symbols-outline.nvim",
-      cmd = "SymbolsOutline",
-    },
-    -- {
-      -- "folke/trouble.nvim",
-      -- cmd = "TroubleToggle",
-    -- },
-    {
-      "nvim-telescope/telescope-project.nvim",
-      event = "BufWinEnter",
-      setup = function()
-        vim.cmd [[packadd telescope.nvim]]
-      end,
-    },
-    {
+  { "folke/tokyonight.nvim" },
+  { "rafamadriz/neon" },
+  { "marko-cerovac/material.nvim" },
+  { "bluz71/vim-nightfly-guicolors" },
+  { "sainnhe/sonokai" },
+  { "tiagovla/tokyodark.nvim" },
+  { "rebelot/kanagawa.nvim" },
+  { "olimorris/onedarkpro.nvim" },
+  { "Mofiqul/dracula.nvim" },
+  { "yashguptaz/calvera-dark.nvim" },
+  { "nxvu699134/vn-night.nvim" },
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+  },
+  -- {
+  -- "folke/trouble.nvim",
+  -- cmd = "TroubleToggle",
+  -- },
+  {
+    "nvim-telescope/telescope-project.nvim",
+    event = "BufWinEnter",
+    setup = function()
+      vim.cmd [[packadd telescope.nvim]]
+    end,
+  },
+  {
     "aca/emmet-ls",
-      config = function()
+    config = function()
       local lspconfig = require("lspconfig")
       local configs = require("lspconfig/configs")
 
@@ -190,31 +192,36 @@ lvim.plugins = {
         },
       }
 
-        if not lspconfig.emmet_ls then
-          configs.emmet_ls = {
-            default_config = {
-              cmd = { "emmet-ls", "--stdio" },
-              filetypes = {
-               "html",
-               "css",
-               "javascript",
-               "typescript",     
-               "eruby",
-               "typescriptreact",
-               "javascriptreact",
-               "svelte",
-               "vue",
+      if not lspconfig.emmet_ls then
+        configs.emmet_ls = {
+          default_config = {
+            cmd = { "emmet-ls", "--stdio" },
+            filetypes = {
+              "html",
+              "css",
+              "javascript",
+              "typescript",
+              "eruby",
+              "typescriptreact",
+              "javascriptreact",
+              "svelte",
+              "vue",
             },
-             root_dir = function(fname)
-                return vim.loop.cwd()    
-                end,
-             settings = {},
+            root_dir = function(fname)
+              return vim.loop.cwd()
+            end,
+            settings = {},
           },
-         }
-     end    
-        lspconfig.emmet_ls.setup({ capabilities = capabilities })
-        end,
-},
+        }
+      end
+      lspconfig.emmet_ls.setup({ capabilities = capabilities })
+    end,
+  },
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    requires = { "tpope/vim-dadbod" }
+  },
+  { "kristijanhusak/vim-dadbod-completion" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
