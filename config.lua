@@ -217,11 +217,11 @@ lvim.plugins = {
       lspconfig.emmet_ls.setup({ capabilities = capabilities })
     end,
   },
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    requires = { "tpope/vim-dadbod" }
-  },
-  { "kristijanhusak/vim-dadbod-completion" },
+--  {
+--    "kristijanhusak/vim-dadbod-ui",
+--    requires = { "tpope/vim-dadbod" }
+--  },
+--  { "kristijanhusak/vim-dadbod-completion" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
